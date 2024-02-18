@@ -4,9 +4,14 @@ import socket
 
 load_dotenv()
 
-HOST = os.environ.get("HOST")
-PORT = os.environ.get("PORT")
-LISTNER_LIMIT = os.environ.get("LISTNER_LIMIT")
+# HOST = os.environ.get("HOST")
+# PORT = os.environ.get("PORT")
+# LISTNER_LIMIT = os.environ.get("LISTNER_LIMIT")
+
+# test
+HOST = '127.0.0.1'
+PORT = 1234
+LISTNER_LIMIT = 5
 
 def main():
     server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -14,8 +19,8 @@ def main():
     try:
         server.bind((HOST, PORT))
         print(f"binded server successfully to {HOST} {PORT}")
-    except:
-        print(f"not able to bind server to {HOST} and {PORT}")
+    except Exception as e:
+        print(f"not able to bind server to {HOST} and {PORT}, exception >> {e}")
         return
     
     server.listen(LISTNER_LIMIT)
