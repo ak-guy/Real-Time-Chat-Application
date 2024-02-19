@@ -1,6 +1,9 @@
 from dotenv import load_dotenv
 import os
 import socket
+import threading
+
+from server_utils import utils
 
 load_dotenv()
 
@@ -12,6 +15,7 @@ load_dotenv()
 HOST = '127.0.0.1'
 PORT = 1234
 LISTNER_LIMIT = 5
+ACTIVE_CLIENT = []
 
 def main():
     server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -26,8 +30,11 @@ def main():
     server.listen(LISTNER_LIMIT)
 
     while True:
+        print("waiting")
         client, address = server.accept()
         print(f"Successfully connected to client {address[0]} {address[1]}")
+
+        threading.Thread(target=utils.client_handler, args=(client,)).start()
 
 if __name__ == '__main__':
     main()
