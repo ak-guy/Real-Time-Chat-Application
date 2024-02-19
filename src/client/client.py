@@ -1,5 +1,5 @@
 import socket
-
+from client_utils import utils
 HOST = '127.0.0.1'
 PORT = 1234
 
@@ -12,6 +12,7 @@ def main():
     except:
         print(f"not able to connect to server {HOST} {PORT}")
 
+    utils.communicate_with_server(client)
 
 if __name__ == '__main__':
     main()

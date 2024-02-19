@@ -2,20 +2,14 @@ from dotenv import load_dotenv
 import os
 import socket
 import threading
-
-from server_utils import utils
+from constants import *
+from server_utils.utils import client_handler
 
 load_dotenv()
 
 # HOST = os.environ.get("HOST")
 # PORT = os.environ.get("PORT")
 # LISTNER_LIMIT = os.environ.get("LISTNER_LIMIT")
-
-# test
-HOST = '127.0.0.1'
-PORT = 1234
-LISTNER_LIMIT = 5
-ACTIVE_CLIENT = []
 
 def main():
     server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -34,7 +28,7 @@ def main():
         client, address = server.accept()
         print(f"Successfully connected to client {address[0]} {address[1]}")
 
-        threading.Thread(target=utils.client_handler, args=(client,)).start()
+        threading.Thread(target=client_handler, args=(client,)).start()
 
 if __name__ == '__main__':
     main()
