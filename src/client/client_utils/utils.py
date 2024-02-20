@@ -2,7 +2,7 @@ import threading
 
 def send_msg_to_server(client):
     while True:
-        msg = input("Please Enter you message: ")
+        msg = input("Message: ")
         if msg != '':
             client.sendall(msg.encode())
         else:
@@ -11,8 +11,9 @@ def send_msg_to_server(client):
 
 def listen_for_message_from_server(client):
     while True:
-        msg = client.recv(2048).decode()
+        msg = client.recv(2048).decode('utf-8')
         if msg != '':
+            print('\n')
             print(msg)
             username = msg.split('~')[1]
             actual_msg = msg.split('~')[2]

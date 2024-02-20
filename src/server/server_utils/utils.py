@@ -17,14 +17,14 @@ def listen_for_message_from_client(client, username):
             chat_msg = str(time_now) + '~' + username + '~' + response
             send_messages_to_all_client(chat_msg)
         else:
-            print(f"message sent from user {username} is empty")
+            pass
 
 def client_handler(client):
     while True:
         username = client.recv(2048).decode('utf-8')
         if username != '':
             ACTIVE_CLIENT.append((username, client))
-            prompt_msg = 'Server~' + username + f"~added to the chat"
+            prompt_msg = username + f"~added to the chat"
             send_messages_to_all_client(prompt_msg)
             break
         else:
