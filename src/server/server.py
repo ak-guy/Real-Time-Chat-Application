@@ -1,11 +1,11 @@
-from dotenv import load_dotenv
+# from dotenv import load_dotenv
 import os
 import socket
 import threading
 from constants import *
 from server_utils.utils import client_handler
 
-load_dotenv()
+# load_dotenv()
 
 # HOST = os.environ.get("HOST")
 # PORT = os.environ.get("PORT")
